@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from 'axios'
+import { ApiSources, getApiResources } from './Sources'
 
 interface ApiParams {
   apiURL: string
@@ -10,6 +11,7 @@ export class Api {
   readonly apiKey: string
 
   readonly adapter: AxiosInstance
+  readonly source: ApiSources
 
   constructor( { apiURL, apiKey }: ApiParams ) {
     this.apiURL = apiURL
@@ -17,8 +19,9 @@ export class Api {
     this.adapter = axios.create( {
       baseURL: apiURL,
       params: {
-        appid: apiKey
+        key: apiKey
       }
     } )
+    this.source = getApiResources( this.adapter )
   }
 }
