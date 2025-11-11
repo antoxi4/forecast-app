@@ -1,5 +1,6 @@
-console.log( process.env )
+import { WEATHER_API_KEY, WEATHER_API_URL } from '@env'
+
 export const ApiConfig =  {
-  apiURL: process.env.WEATHER_API_URL as string,
-  apiKey: process.env.WEATHER_API_KEY as string,
+  apiURL: WEATHER_API_URL,
+  apiKey: WEATHER_API_KEY,
 }
