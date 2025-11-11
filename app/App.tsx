@@ -2,8 +2,9 @@ import {
   SafeAreaProvider,
 } from 'react-native-safe-area-context'
 import { StatusBar } from 'react-native'
-import { BootstrapContextProvider } from './Services/Bootstrap'
+
 import { Navigation } from './Navigation'
+import { BootstrapContextProvider } from './Services/Bootstrap'
 
 export const App: React.FunctionComponent = () => (
   <SafeAreaProvider>

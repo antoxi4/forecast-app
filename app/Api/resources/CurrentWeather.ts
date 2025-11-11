@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios'
 
 import { BaseApiSource } from "./BaseApiSource"
-import { CurrentWeatherData, WeatherLocation } from '../Models'
+import { CurrentWeatherData, WeatherLocation } from '../models'
 
 export interface CurrentWeatherResponse {
   location: WeatherLocation

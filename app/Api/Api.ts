@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
-import { ApiSources, getApiResources } from './Sources'
+
+import { ApiSources, getApiResources } from './resources'
 
 interface ApiParams {
   apiURL: string
