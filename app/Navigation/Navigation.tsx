@@ -1,0 +1,26 @@
+import React from "react"
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { HomeScreen } from "../Screens/Home"
+import { Routes } from "./Routes"
+
+const RootNavigationStack = createNativeStackNavigator()
+
+export const Navigation: React.FunctionComponent = () => {
+  return (
+    <NavigationContainer>
+      <RootNavigationStack.Navigator 
+        initialRouteName={Routes.home} 
+        screenOptions={{ 
+          headerShown: false, 
+          contentStyle: { backgroundColor: 'black' } 
+        }}
+      >
+        <RootNavigationStack.Screen 
+          name={Routes.home} 
+          component={HomeScreen} 
+        />
+      </RootNavigationStack.Navigator>
+    </NavigationContainer>
+  )
+}
