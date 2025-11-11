@@ -2,21 +2,25 @@
   "name": "Weather",
   "version": "0.0.1",
   "private": true,
+  "main": "index.ts",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "start": "react-native start",
     "test": "jest",
     "clean": "yarn clean-node-modules && yarn clean-pods && yarn clean-gradle",
     "clean-gradle": "rm -rf ./android/app/.cxx && cd ./android && ./gradlew clean",
     "clean-node-modules": "rm -rf node_modules && yarn install",
-    "clean-pods": "cd ios && rm -rf Pods && rm -rf build && bundle exec pod install"
+    "clean-pods": "cd ios && rm -rf Pods && rm -rf build && bundle exec pod install",
+    "install-pods": "cd ios && bundle exec pod install",
+    "postinstall": "yarn install-pods"
   },
   "dependencies": {
+    "@react-native/new-app-screen": "0.82.1",
     "react": "19.1.1",
     "react-native": "0.82.1",
-    "@react-native/new-app-screen": "0.82.1",
     "react-native-safe-area-context": "^5.5.2"
   },
   "devDependencies": {
@@ -30,6 +34,7 @@
     "@react-native/eslint-config": "0.82.1",
     "@react-native/metro-config": "0.82.1",
     "@react-native/typescript-config": "0.82.1",
+    "@stylistic/eslint-plugin": "^5.5.0",
     "@types/jest": "^29.5.13",
     "@types/react": "^19.1.1",
     "@types/react-test-renderer": "^19.1.0",
