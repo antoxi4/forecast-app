@@ -1,1 +1,5 @@
-export const API_URL = 'https://api.open-meteo.com/v1/forecast'
+console.log( process.env )
+export const ApiConfig =  {
+  apiURL: process.env.WEATHER_API_URL as string,
+  apiKey: process.env.WEATHER_API_KEY as string,
+}

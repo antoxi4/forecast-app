@@ -1,5 +1,8 @@
 import React from "react"
-import { bootstrapContext } from "./BootstrapContext"
+import { Alert } from "react-native"
+
+import { Bootstrap } from "../Bootstrap"
+import { BootstrapContext, bootstrapContext } from "./BootstrapContext"
 
 interface BootstrapContextProviderProps {
   children?: React.ReactNode
@@ -7,8 +10,31 @@ interface BootstrapContextProviderProps {
 
 export const BootstrapContextProvider: React.FunctionComponent<BootstrapContextProviderProps> = ( 
   props: BootstrapContextProviderProps 
-) => (
-  <bootstrapContext.Provider value={{} as any}>
-    {props.children}
-  </bootstrapContext.Provider>
-)
+) => {
+  const [ bootstrapContextState, setBootstrapContextState ] = React.useState<BootstrapContext | null>( null )
+
+  const initBootstrapContext = async(): Promise<void> => {
+    try {
+      const bootstrap = new Bootstrap()
+      const context = await bootstrap.init()
+
+      setBootstrapContextState( context )
+    } catch {
+      Alert.alert( "Error", "Failed to initialize app." )
+    }
+  }
+
+  React.useEffect( () => {
+    initBootstrapContext()
+  }, [] )
+
+  if ( bootstrapContextState === null ) {
+    return null
+  }
+
+  return (
+    <bootstrapContext.Provider value={bootstrapContextState}>
+      {props.children}
+    </bootstrapContext.Provider>
+  )
+}
