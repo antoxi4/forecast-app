@@ -6,4 +6,4 @@ export interface BootstrapContext {
   api: Api
 }
 
-export const bootstrapContext = React.createContext<BootstrapContext>( {} as BootstrapContext )
+export const bootstrapContext = React.createContext<BootstrapContext>({} as BootstrapContext)

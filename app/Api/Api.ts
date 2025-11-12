@@ -14,15 +14,15 @@ export class Api {
   readonly adapter: AxiosInstance
   readonly source: ApiSources
 
-  constructor( { apiURL, apiKey }: ApiParams ) {
+  constructor({ apiURL, apiKey }: ApiParams) {
     this.apiURL = apiURL
     this.apiKey = apiKey
-    this.adapter = axios.create( {
+    this.adapter = axios.create({
       baseURL: apiURL,
       params: {
-        key: apiKey
-      }
-    } )
-    this.source = getApiResources( this.adapter )
+        key: apiKey,
+      },
+    })
+    this.source = getApiResources(this.adapter)
   }
 }

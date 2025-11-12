@@ -9,12 +9,12 @@ export interface CurrentWeatherResponse {
 }
 
 export class CurrentWeather extends BaseApiSource {
-  getByCity = async( city: string ): Promise<AxiosResponse<CurrentWeatherResponse>> => {
-    const response = await this.adapter.get<CurrentWeatherResponse>( '/current.json', {
+  getByCity = async(city: string): Promise<AxiosResponse<CurrentWeatherResponse>> => {
+    const response = await this.adapter.get<CurrentWeatherResponse>('/current.json', {
       params: {
         q: city,
-      }
-    } )
+      },
+    })
 
     return response
   }

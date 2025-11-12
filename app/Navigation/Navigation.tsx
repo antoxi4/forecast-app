@@ -16,7 +16,7 @@ export const Navigation: React.FunctionComponent = () => {
         initialRouteName={Routes.home} 
         screenOptions={{ 
           headerShown: false, 
-          contentStyle: { backgroundColor: Colors.backgroundPrimary } 
+          contentStyle: { backgroundColor: Colors.backgroundPrimary }, 
         }}
       >
         <RootNavigationStack.Screen 

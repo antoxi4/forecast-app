@@ -6,6 +6,6 @@ export interface ApiSources {
   currentWeather: CurrentWeather
 }
 
-export const getApiResources = ( adapter: AxiosInstance ) => ( {
-  currentWeather: new CurrentWeather ( adapter ),
-} )
+export const getApiResources = (adapter: AxiosInstance) => ({
+  currentWeather: new CurrentWeather (adapter),
+})

@@ -17,6 +17,7 @@ module.exports = {
     'array-bracket-spacing': [ 'error', 'always' ],
     'computed-property-spacing': [ 'error', 'always' ],
     'template-curly-spacing': [ 'error', 'always' ],
-    'space-in-parens': [ 'error', 'always' ],
+    'space-in-parens': [ 'error', 'never' ],
+    'comma-dangle': [ 'error', 'always-multiline' ],
   },
 }

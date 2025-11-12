@@ -11,24 +11,24 @@ interface BootstrapContextProviderProps {
 export const BootstrapContextProvider: React.FunctionComponent<BootstrapContextProviderProps> = ( 
   props: BootstrapContextProviderProps 
 ) => {
-  const [ bootstrapContextState, setBootstrapContextState ] = React.useState<BootstrapContext | null>( null )
+  const [ bootstrapContextState, setBootstrapContextState ] = React.useState<BootstrapContext | null>(null)
 
   const initBootstrapContext = async(): Promise<void> => {
     try {
       const bootstrap = new Bootstrap()
       const context = await bootstrap.init()
 
-      setBootstrapContextState( context )
+      setBootstrapContextState(context)
     } catch {
-      Alert.alert( "Error", "Failed to initialize app." )
+      Alert.alert("Error", "Failed to initialize app.")
     }
   }
 
-  React.useEffect( () => {
+  React.useEffect(() => {
     initBootstrapContext()
-  }, [] )
+  }, [])
 
-  if ( bootstrapContextState === null ) {
+  if (bootstrapContextState === null) {
     return null
   }
 
