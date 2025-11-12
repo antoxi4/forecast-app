@@ -5,8 +5,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Routes } from "./Routes"
 import { HomeScreen } from "../Screens/Home"
 import { Colors } from "../Styling"
+import { NavigationParameters } from "./NavigationParameters"
 
-const RootNavigationStack = createNativeStackNavigator()
+const RootNavigationStack = createNativeStackNavigator<NavigationParameters>()
 
 export const Navigation: React.FunctionComponent = () => {
   return (
