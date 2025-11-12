@@ -5,10 +5,15 @@ import { StatusBar } from 'react-native'
 
 import { Navigation } from './Navigation'
 import { BootstrapContextProvider } from './Services/Bootstrap'
+import { Colors } from './Styling'
 
 export const App: React.FunctionComponent = () => (
   <SafeAreaProvider>
-    <StatusBar barStyle='light-content' />
+    <StatusBar 
+      translucent 
+      barStyle='light-content' 
+      backgroundColor={Colors.backgroundPrimary}
+    />
     <BootstrapContextProvider>
       <Navigation />
     </BootstrapContextProvider>

@@ -1,6 +1,9 @@
 import React from "react"
+import { Text } from "react-native"
+import { SafeAreaView } from "react-native-safe-area-context"
 
 import { useBootstrap } from "../../Services/Bootstrap"
+import { styles } from "./HomeScreen.styles"
 
 export const HomeScreen: React.FunctionComponent = () => {
   const { api } = useBootstrap()
@@ -18,5 +21,10 @@ export const HomeScreen: React.FunctionComponent = () => {
   React.useEffect( () => {
     getWeatherData()
   }, [] )
-  return null
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.cityTitle}>Kyiv</Text>
+    </SafeAreaView>
+  )
 }

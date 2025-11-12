@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { Routes } from "./Routes"
 import { HomeScreen } from "../Screens/Home"
+import { Colors } from "../Styling"
 
 const RootNavigationStack = createNativeStackNavigator()
 
@@ -14,7 +15,7 @@ export const Navigation: React.FunctionComponent = () => {
         initialRouteName={Routes.home} 
         screenOptions={{ 
           headerShown: false, 
-          contentStyle: { backgroundColor: 'black' } 
+          contentStyle: { backgroundColor: Colors.backgroundPrimary } 
         }}
       >
         <RootNavigationStack.Screen 
