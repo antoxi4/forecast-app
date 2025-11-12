@@ -7,5 +7,5 @@ export interface ApiSources {
 }
 
 export const getApiResources = (adapter: AxiosInstance): ApiSources => ({
-  weather: new WeatherSource (adapter),
+  weather: new WeatherSource(adapter),
 })

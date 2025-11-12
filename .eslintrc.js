@@ -19,5 +19,6 @@ module.exports = {
     'template-curly-spacing': [ 'error', 'always' ],
     'space-in-parens': [ 'error', 'never' ],
     'comma-dangle': [ 'error', 'always-multiline' ],
+    'func-call-spacing': [ 'error', 'never' ],
   },
 }
