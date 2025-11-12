@@ -24,7 +24,7 @@ export const HomeScreen: React.FunctionComponent = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.cityTitle}>Kyiv</Text>
+      <Text style={styles.cityTitle}>{'\u{e2bd}'}</Text>
     </SafeAreaView>
   )
 }

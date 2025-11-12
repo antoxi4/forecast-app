@@ -7,7 +7,13 @@ export const styles = StyleSheet.create( {
     paddingHorizontal: 16,
   },
   cityTitle: <TextStyle>{
-    color: Colors.textPrimary,
-    fontSize: 32,
+    // color: Colors.textSecondary,
+    // fontFamily: "MaterialIcons-Regular",
+    fontFamily: "materialicons_regular",
+    // fontWeight: "regular",
+    fontSize: 82,
+    width: 82,
+    height: 82,
+    color: Colors.accentPrimary,
   } 
 } )
