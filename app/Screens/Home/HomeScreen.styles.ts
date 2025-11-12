@@ -1,5 +1,6 @@
 import { StyleSheet, TextStyle } from "react-native"
 import { Colors } from "../../Styling"
+import { IconStyle } from "../../SharedComponents/Icon"
 
 export const styles = StyleSheet.create( {
   container: {
@@ -7,13 +8,12 @@ export const styles = StyleSheet.create( {
     paddingHorizontal: 16,
   },
   cityTitle: <TextStyle>{
-    // color: Colors.textSecondary,
-    // fontFamily: "MaterialIcons-Regular",
-    fontFamily: "materialicons_regular",
-    // fontWeight: "regular",
+    color: Colors.textSecondary,
     fontSize: 82,
-    width: 82,
-    height: 82,
+  },
+  icon: <IconStyle>{
     color: Colors.accentPrimary,
-  } 
+    fontSize: 82,
+    backgroundColor: Colors.backgroundSecondary,
+  }
 } )

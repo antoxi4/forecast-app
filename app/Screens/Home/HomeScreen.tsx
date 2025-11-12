@@ -2,8 +2,9 @@ import React from "react"
 import { Text } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
-import { useBootstrap } from "../../Services/Bootstrap"
 import { styles } from "./HomeScreen.styles"
+import { useBootstrap } from "../../Services/Bootstrap"
+import { Icon, IconName } from "../../SharedComponents/Icon"
 
 export const HomeScreen: React.FunctionComponent = () => {
   const { api } = useBootstrap()
@@ -24,7 +25,8 @@ export const HomeScreen: React.FunctionComponent = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.cityTitle}>{'\u{e2bd}'}</Text>
+      <Text style={styles.cityTitle}>Kyiv</Text>
+      <Icon name={IconName.cloud} style={styles.icon} />
     </SafeAreaView>
   )
 }
