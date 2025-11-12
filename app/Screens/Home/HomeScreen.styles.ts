@@ -1,37 +1,23 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native"
+import { ImageStyle, StyleSheet, TextStyle } from "react-native"
 
 import { Colors } from "../../Styling"
-import { IconStyle } from "../../SharedComponents/Icon"
 
 export const styles = StyleSheet.create({
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 16,
-    marginHorizontal: 16,
-    columnGap: 12,
+  weatherStateImage: <ImageStyle>{
+    marginTop: 36,
+    alignSelf: 'center',
   },
-  locationContainer: <ViewStyle>{
-    flex: 1,
-    flexDirection: "column",
-  },
-  city: <TextStyle>{
-    color: Colors.textPrimary,
-    fontWeight: "bold",
-    fontSize: 16,
-  },
-  date: <TextStyle>{
-    color: Colors.textSecondary,
-    fontSize: 16,
-  },  
   temperature: <TextStyle>{
+    alignSelf: 'center',
     color: Colors.textPrimary,
     fontWeight: "bold",
     marginTop: 6,
-    fontSize: 42,
+    fontSize: 52,
   },
-  locationIcon: <IconStyle>{
+  condition: <TextStyle>{
+    alignSelf: 'center',
     color: Colors.textPrimary,
-    fontSize: 32,
+    marginTop: 6,
+    fontSize: 16,
   },
 })

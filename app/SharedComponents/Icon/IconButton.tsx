@@ -2,6 +2,7 @@ import { StyleProp, ViewStyle, TouchableOpacityProps, TouchableOpacity } from "r
 
 import { Icon, IconProps } from "./Icon"
 
+export type IconButtonStyle = ViewStyle
 export interface IconButtonProps extends Omit<TouchableOpacityProps, "style">, IconProps {
   buttonStyle?: StyleProp<ViewStyle>;
 }
