@@ -1,1 +1,1 @@
-export * from './CurrentWeather'
+export * from './WeatherModels'
