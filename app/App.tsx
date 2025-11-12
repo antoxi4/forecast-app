@@ -1,21 +1,24 @@
 import {
   SafeAreaProvider,
 } from 'react-native-safe-area-context'
-import { StatusBar } from 'react-native'
+import { StatusBar, View } from 'react-native'
 
+import { Colors } from './Styling'
+import { styles } from './App.styles'
 import { Navigation } from './Navigation'
 import { BootstrapContextProvider } from './Services/Bootstrap'
-import { Colors } from './Styling'
 
 export const App: React.FunctionComponent = () => (
-  <SafeAreaProvider>
-    <StatusBar 
-      translucent 
-      barStyle='light-content' 
-      backgroundColor={Colors.backgroundPrimary}
-    />
-    <BootstrapContextProvider>
-      <Navigation />
-    </BootstrapContextProvider>
-  </SafeAreaProvider>
+  <View style={styles.container}>
+    <SafeAreaProvider>
+      <StatusBar 
+        translucent 
+        barStyle='light-content' 
+        backgroundColor={Colors.backgroundPrimary}
+      />
+      <BootstrapContextProvider>
+        <Navigation />
+      </BootstrapContextProvider>
+    </SafeAreaProvider>
+  </View>
 )
