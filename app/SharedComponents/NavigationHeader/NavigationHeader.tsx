@@ -1,24 +1,32 @@
 import { styles } from "./NavigationHeader.styles"
 import { IconButton, IconName } from "../Icon"
 import { NavigationHeaderContainer } from "../NavigationHeaderContainer"
+import { StyleProp, ViewStyle } from "react-native"
 
 interface NavigationHeaderProps {
+  containerStyle?: StyleProp<ViewStyle>;
   children?: React.ReactNode;
   backButtonVisible?: boolean;
   disableBackButton?: boolean;
   onPressBack?: () => void;
 }
 
-export const NavigationHeader: React.FunctionComponent<NavigationHeaderProps> = ({ children, disableBackButton, backButtonVisible = true, onPressBack }: NavigationHeaderProps) => {
-  const showBackButton = Boolean(backButtonVisible && onPressBack)
+export const NavigationHeader: React.FunctionComponent<NavigationHeaderProps> = ({ 
+  children,
+  containerStyle,
+  disableBackButton,
+  backButtonVisible = true,
+  onPressBack,
+}: NavigationHeaderProps) => {
+  const showBackButton = Boolean(onPressBack)
   const isBackButtonDisabled = !onPressBack || disableBackButton
   
   return (
-    <NavigationHeaderContainer>
+    <NavigationHeaderContainer style={containerStyle}>
       {showBackButton && (
         <IconButton 
           name={IconName.arrowBackNew} 
-          style={styles.icon} 
+          style={[ styles.icon, backButtonVisible ? undefined : styles.invisibleIcon ]} 
           disabled={isBackButtonDisabled}
           buttonStyle={styles.backButton} 
           onPress={onPressBack}

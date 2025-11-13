@@ -7,8 +7,11 @@ export const styles = StyleSheet.create({
     color: Colors.textPrimary,
     fontSize: 28,
   },
+  invisibleIcon: <IconStyle>{
+    opacity: 0,
+  },
   backButton: <ViewStyle>{
-    width: 36,
+    alignSelf: 'flex-start',
     height: 36,
   },
 })

@@ -1,37 +1,38 @@
 import React from "react"
-import { Text, View } from "react-native"
-import { SafeAreaView } from "react-native-safe-area-context"
+import { LayoutAnimation } from "react-native"
 
 import { styles } from "./Header.styles"
 import { defaultHitSlop } from "../../../../Styling"
-import { Icon, IconButton, IconName } from "../../../../SharedComponents/Icon"
+import { IconButton, IconName } from "../../../../SharedComponents/Icon"
+import { NavigationHeader } from "../../../../SharedComponents/NavigationHeader/NavigationHeader"
 
 interface HeaderProps {
-  cityName?: string;
-  country?: string;
-  dateString?: string;
+  onPressBack: () => void;
 }
   
-const HeaderComponent: React.FunctionComponent<HeaderProps> = ({ cityName, country, dateString = '' }: HeaderProps) => {
-  const formattedDate = new Date(dateString).toLocaleDateString('en-US', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'short',
-  })
+const HeaderComponent: React.FunctionComponent<HeaderProps> = ({ onPressBack }: HeaderProps) => {
+  const [ isSearchActive, setIsSearchActive ] = React.useState(false)
+
+  const toggleSearch = () => {
+    setIsSearchActive(!isSearchActive)
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)
+  }
+
   return (
-    <SafeAreaView style={styles.header}>
-      <Icon name={IconName.locationOn} style={styles.icon} />
-      <View style={styles.locationContainer}>
-        <Text style={styles.city} numberOfLines={1}>{cityName}, {country}</Text>
-        <Text style={styles.date}>{formattedDate}</Text>
-      </View>
+    <NavigationHeader 
+      backButtonVisible={!isSearchActive} 
+      disableBackButton={isSearchActive}
+      onPressBack={onPressBack}
+    >
+      {/* <View style={styles.locationContainer} /> */}
       <IconButton 
         hitSlop={defaultHitSlop}
         buttonStyle={styles.cityListButton} 
-        name={IconName.listView} 
+        name={IconName.search} 
         style={styles.icon} 
+        onPress={toggleSearch}
       />
-    </SafeAreaView>
+    </NavigationHeader>
   )
 }
 

@@ -27,8 +27,7 @@ export const styles = StyleSheet.create({
     fontSize: 14,
   },
   cityListButton: <IconButtonStyle> {
-    justifyContent: 'center',
-    alignItems: 'center',
+    alignSelf: 'flex-end',
   },
   icon: <IconStyle>{
     color: Colors.textPrimary,

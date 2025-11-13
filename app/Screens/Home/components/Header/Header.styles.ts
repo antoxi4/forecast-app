@@ -6,8 +6,6 @@ import { IconButtonStyle, IconStyle } from "../../../../SharedComponents/Icon"
 
 export const styles = StyleSheet.create({
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
     columnGap: 12,
   },
   locationContainer: <ViewStyle>{
