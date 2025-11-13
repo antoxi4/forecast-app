@@ -1,15 +1,13 @@
-import React, { useCallback } from "react"
+import React from "react"
 import { Image, Text } from "react-native"
 
-import { styles } from "./HomeScreen.styles"
+import { styles } from "./CityListScreen.styles"
 import { Header } from "./components/Header"
 import { useBootstrap } from "../../Services/Bootstrap"
 import { WeatherForecastResponse } from "../../Api"
-import { Routes, useNavigation } from "../../Navigation"
 
-export const HomeScreen: React.FunctionComponent = () => {
+export const CityListScreen: React.FunctionComponent = () => {
   const { api } = useBootstrap()
-  const navigation = useNavigation()
   const [ currentWeather, setCurrentWeather ] = React.useState<WeatherForecastResponse | null>(null)
 
   const getWeatherData = async () => {
@@ -23,10 +21,6 @@ export const HomeScreen: React.FunctionComponent = () => {
   }
 
   const nearestForecast = currentWeather?.forecast?.forecastday?.[ 0 ]
-
-  const navigateToCityList = useCallback(() => {
-    navigation.navigate(Routes.cityList)
-  }, [ navigation ])
   
   React.useEffect(() => {
     getWeatherData()
@@ -37,8 +31,7 @@ export const HomeScreen: React.FunctionComponent = () => {
       <Header 
         cityName={currentWeather?.location.name} 
         country={currentWeather?.location.country} 
-        dateString={currentWeather?.location.localtime}
-        onCityListPress={navigateToCityList}
+        dateString={currentWeather?.location.localtime} 
       />
       <Image 
         source={require('../../Assets/images/weatherState/sun_cloudy_color.png')} 

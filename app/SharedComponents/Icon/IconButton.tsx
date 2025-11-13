@@ -9,6 +9,8 @@ export interface IconButtonProps extends Omit<TouchableOpacityProps, "style">, I
 
 export const IconButton: React.FunctionComponent<IconButtonProps> = ( 
   { buttonStyle: backgroundStyle, name, style, ...viewProps }: IconButtonProps 
-) => {
-  return <TouchableOpacity style={backgroundStyle} {...viewProps}><Icon name={name} style={style} /></TouchableOpacity>
-}
+) => (
+  <TouchableOpacity style={backgroundStyle} {...viewProps}>
+    <Icon name={name} style={style} />
+  </TouchableOpacity>
+)

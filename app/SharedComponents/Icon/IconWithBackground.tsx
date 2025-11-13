@@ -8,6 +8,8 @@ export interface IconWithBackgroundProps extends Omit<ViewProps, "style">, IconP
 
 export const IconWithBackground: React.FunctionComponent<IconWithBackgroundProps> = ( 
   { backgroundStyle, name, style, ...viewProps }: IconWithBackgroundProps 
-) => {
-  return <View style={backgroundStyle} {...viewProps}><Icon name={name} style={style} /></View>
-}
+) => (
+  <View style={backgroundStyle} {...viewProps}>
+    <Icon name={name} style={style} />
+  </View>
+)

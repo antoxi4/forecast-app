@@ -10,10 +10,9 @@ interface HeaderProps {
   cityName?: string;
   country?: string;
   dateString?: string;
-  onCityListPress?: () => void;
 }
   
-const HeaderComponent: React.FunctionComponent<HeaderProps> = ({ cityName, country, dateString = '', onCityListPress }: HeaderProps) => {
+const HeaderComponent: React.FunctionComponent<HeaderProps> = ({ cityName, country, dateString = '' }: HeaderProps) => {
   const formattedDate = new Date(dateString).toLocaleDateString('en-US', {
     weekday: 'long',
     day: 'numeric',
@@ -27,11 +26,10 @@ const HeaderComponent: React.FunctionComponent<HeaderProps> = ({ cityName, count
         <Text style={styles.date}>{formattedDate}</Text>
       </View>
       <IconButton 
+        hitSlop={defaultHitSlop}
+        buttonStyle={styles.cityListButton} 
         name={IconName.listView} 
         style={styles.icon} 
-        buttonStyle={styles.cityListButton} 
-        hitSlop={defaultHitSlop}
-        onPress={onCityListPress}
       />
     </SafeAreaView>
   )
