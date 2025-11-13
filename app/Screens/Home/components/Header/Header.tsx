@@ -1,10 +1,10 @@
 import React from "react"
 import { Text, View } from "react-native"
-import { SafeAreaView } from "react-native-safe-area-context"
 
 import { styles } from "./Header.styles"
 import { defaultHitSlop } from "../../../../Styling"
 import { Icon, IconButton, IconName } from "../../../../SharedComponents/Icon"
+import { NavigationHeaderContainer } from "../../../../SharedComponents/NavigationHeaderContainer"
 
 interface HeaderProps {
   cityName?: string;
@@ -23,7 +23,7 @@ const HeaderComponent: React.FunctionComponent<HeaderProps> = ({ cityName, count
 
 
   return (
-    <SafeAreaView style={styles.header}>
+    <NavigationHeaderContainer style={styles.header}>
       <Icon name={IconName.locationOn} style={styles.icon} />
       <View style={styles.locationContainer}>
         <Text style={styles.city} numberOfLines={1}>{formattedLocation}</Text>
@@ -36,7 +36,7 @@ const HeaderComponent: React.FunctionComponent<HeaderProps> = ({ cityName, count
         hitSlop={defaultHitSlop}
         onPress={onCityListPress}
       />
-    </SafeAreaView>
+    </NavigationHeaderContainer>
   )
 }
 

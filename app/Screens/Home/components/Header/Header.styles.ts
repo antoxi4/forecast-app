@@ -8,9 +8,7 @@ export const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 16,
     columnGap: 12,
-    marginHorizontal: 16,
   },
   locationContainer: <ViewStyle>{
     flex: 1,

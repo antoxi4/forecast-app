@@ -1,19 +1,14 @@
 import React from "react"
-import { Button, Image, Text } from "react-native"
 
-import { styles } from "./CityListScreen.styles"
-import { Header } from "./components/Header"
-import { useBootstrap } from "../../Services/Bootstrap"
-import { WeatherForecastResponse } from "../../Api"
+import { NavigationHeader } from "../../SharedComponents/NavigationHeader/NavigationHeader"
+import { useNavigation } from "../../Navigation"
 
 export const CityListScreen: React.FunctionComponent = () => {
+  const { goBack } = useNavigation()
+  
   return (
     <>
-      <Header 
-        cityName={''} 
-        country={''} 
-        dateString={''} 
-      />
+      <NavigationHeader onPressBack={goBack}/>
     </>
   )
 }
