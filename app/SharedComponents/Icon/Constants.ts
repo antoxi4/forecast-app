@@ -4,4 +4,5 @@ export enum IconName {
   search = '\u{e8b6}',
   listView = '\u{e8ef}',
   arrowBackNew = '\u{e2ea}',
+  close = '\u{e5cd}',
 }

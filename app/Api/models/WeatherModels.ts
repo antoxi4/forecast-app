@@ -141,3 +141,15 @@ export interface WeatherForecastResponse {
   forecast: { forecastday: Array<WeatherForecast> }
   current: CurrentWeatherData
 }
+
+export interface LookupCity {
+  id: number;
+  name: string;
+  region: string;
+  country: string;
+  lat: number;
+  lon: number;
+  url: string;
+}
+
+export type LookupCityResponse = Array<LookupCity>

@@ -1,33 +1,25 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native"
 
 import { Colors } from "../../../../Styling"
-import { IconButtonStyle, IconStyle } from "../../../../SharedComponents/Icon"
+import { IconStyle } from "../../../../SharedComponents/Icon"
+import { DEFAULT_HEADER_HEIGHT } from "../../../../SharedComponents/NavigationHeader"
 
 
 export const styles = StyleSheet.create({
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 16,
-    columnGap: 12,
-    marginHorizontal: 16,
-  },
-  locationContainer: <ViewStyle>{
+  locationContainer: <TextStyle>{
     flex: 1,
+    borderRadius: 12,
+    paddingHorizontal: 8,
+    height: DEFAULT_HEADER_HEIGHT,
     flexDirection: "column",
-  },
-  city: <TextStyle>{
-    flexWrap: 'nowrap',
     color: Colors.textPrimary,
-    fontWeight: "bold",
-    fontSize: 16,
+    backgroundColor: Colors.backgroundTertiary,
   },
-  date: <TextStyle>{
-    color: Colors.textSecondary,
-    fontSize: 14,
-  },
-  cityListButton: <IconButtonStyle> {
+  cityListButton: <ViewStyle> {
     alignSelf: 'flex-end',
+    height: DEFAULT_HEADER_HEIGHT,
+    marginLeft: 12,
+    
   },
   icon: <IconStyle>{
     color: Colors.textPrimary,

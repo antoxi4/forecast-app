@@ -1,6 +1,8 @@
 import { StyleSheet, ViewStyle } from "react-native"
+
 import { IconStyle } from "../Icon"
 import { Colors } from "../../Styling"
+import { DEFAULT_HEADER_HEIGHT } from "./Constants"
 
 export const styles = StyleSheet.create({
   icon: <IconStyle>{
@@ -12,6 +14,6 @@ export const styles = StyleSheet.create({
   },
   backButton: <ViewStyle>{
     alignSelf: 'flex-start',
-    height: 36,
+    height: DEFAULT_HEADER_HEIGHT,
   },
 })

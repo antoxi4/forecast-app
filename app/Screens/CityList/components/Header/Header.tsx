@@ -1,5 +1,5 @@
 import React from "react"
-import { LayoutAnimation } from "react-native"
+import { TextInput } from "react-native"
 
 import { styles } from "./Header.styles"
 import { defaultHitSlop } from "../../../../Styling"
@@ -7,16 +7,19 @@ import { IconButton, IconName } from "../../../../SharedComponents/Icon"
 import { NavigationHeader } from "../../../../SharedComponents/NavigationHeader/NavigationHeader"
 
 interface HeaderProps {
+  isSearchActive?: boolean;
+  onSearchValueChange?: (value: string) => void;
+  onToggleSearch: () => void;
   onPressBack: () => void;
 }
   
-const HeaderComponent: React.FunctionComponent<HeaderProps> = ({ onPressBack }: HeaderProps) => {
-  const [ isSearchActive, setIsSearchActive ] = React.useState(false)
-
-  const toggleSearch = () => {
-    setIsSearchActive(!isSearchActive)
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)
-  }
+const HeaderComponent: React.FunctionComponent<HeaderProps> = ({ 
+  isSearchActive, 
+  onSearchValueChange,
+  onToggleSearch,
+  onPressBack, 
+}: HeaderProps) => {
+  const searchIcon = isSearchActive ? IconName.close : IconName.search
 
   return (
     <NavigationHeader 
@@ -24,13 +27,13 @@ const HeaderComponent: React.FunctionComponent<HeaderProps> = ({ onPressBack }: 
       disableBackButton={isSearchActive}
       onPressBack={onPressBack}
     >
-      {/* <View style={styles.locationContainer} /> */}
+      {isSearchActive && <TextInput style={styles.locationContainer} onChangeText={onSearchValueChange}/>}
       <IconButton 
         hitSlop={defaultHitSlop}
         buttonStyle={styles.cityListButton} 
-        name={IconName.search} 
+        name={searchIcon} 
         style={styles.icon} 
-        onPress={toggleSearch}
+        onPress={onToggleSearch}
       />
     </NavigationHeader>
   )

@@ -18,7 +18,7 @@ export const NavigationHeader: React.FunctionComponent<NavigationHeaderProps> = 
   backButtonVisible = true,
   onPressBack,
 }: NavigationHeaderProps) => {
-  const showBackButton = Boolean(onPressBack)
+  const showBackButton = Boolean(onPressBack && backButtonVisible)
   const isBackButtonDisabled = !onPressBack || disableBackButton
   
   return (

@@ -1,7 +1,7 @@
 export enum Colors {
   backgroundPrimary = '#161b29',
   backgroundSecondary = '#192331',
-  backgroundTertiary = '#1d2536',
+  backgroundTertiary = '#323f5cff',
   textPrimary = '#FFFFFF',
   textSecondary = '#AAAAAA',
   accentPrimary = '#00ABBD',

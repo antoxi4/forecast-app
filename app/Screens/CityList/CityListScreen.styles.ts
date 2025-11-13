@@ -1,4 +1,4 @@
-import { ImageStyle, StyleSheet, TextStyle } from "react-native"
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native"
 
 import { Colors } from "../../Styling"
 
@@ -19,5 +19,10 @@ export const styles = StyleSheet.create({
     color: Colors.textPrimary,
     marginTop: 6,
     fontSize: 16,
+  },
+  overlay: <ViewStyle>{
+    backgroundColor: 'black', 
+    opacity: 0.3,
+    ...StyleSheet.absoluteFill, 
   },
 })
