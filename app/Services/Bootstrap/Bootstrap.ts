@@ -1,5 +1,6 @@
 import { Api } from "../../Api"
 import { ApiConfig } from "../../Configurations"
+import { getSettingsStore } from "../SettingsStore"
 import { BootstrapContext } from "./context/BootstrapContext"
 
 export class Bootstrap {
@@ -8,9 +9,11 @@ export class Bootstrap {
       apiURL: ApiConfig.apiURL,
       apiKey: ApiConfig.apiKey,
     })
+    const store = getSettingsStore()
     
     return {
       api,
+      store,
     }
   }
 }
