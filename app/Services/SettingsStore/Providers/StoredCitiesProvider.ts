@@ -1,17 +1,18 @@
 import { useMMKVObject } from "react-native-mmkv"
 
 import { BaseProvider } from "./BaseProvider"
-import { StoredCity } from "../Models"
+import { StoredCityList } from "../Models"
 
-export class ActiveCityProvider extends BaseProvider<StoredCity> {
-  readonly key = 'activeCity'
+export class StoredCitiesProvider extends BaseProvider<StoredCityList> {
+  readonly key = 'storedCities'
 
-  getValue = (): StoredCity | undefined =>{
+  getValue = (): StoredCityList | undefined =>{
     const value = this.mmkv.getString(this.key)
+    
     return value ? JSON.parse(value) : undefined
   }
 
-  setValue = (value: StoredCity): void =>{
+  setValue = (value: StoredCityList): void =>{
     this.mmkv.set(this.key, JSON.stringify(value))
   }
 
@@ -21,6 +22,6 @@ export class ActiveCityProvider extends BaseProvider<StoredCity> {
 
   useValue = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    return useMMKVObject<StoredCity>(this.key, this.mmkv)
+    return useMMKVObject<StoredCityList>(this.key, this.mmkv)
   }
 }

@@ -10,7 +10,8 @@ export const getSettingsStore = (): SettingsStore => {
   const mmkv = createMMKV({ id: STORAGE_ID })
 
   return Object.entries(registerSettingsProviders).reduce((acc, [ key, Provider ]) => {
-    acc[ key as RegisteredProvidersKeys ] = new Provider(mmkv)
+    
+    (acc as any)[ key ] = new Provider(mmkv)
 
     return acc
   }, {} as SettingsStore)
