@@ -1,7 +1,8 @@
+import { StyleProp, ViewStyle } from "react-native"
+
 import { styles } from "./NavigationHeader.styles"
 import { IconButton, IconName } from "../Icon"
 import { NavigationHeaderContainer } from "../NavigationHeaderContainer"
-import { StyleProp, ViewStyle } from "react-native"
 
 interface NavigationHeaderProps {
   containerStyle?: StyleProp<ViewStyle>;

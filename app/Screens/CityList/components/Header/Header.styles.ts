@@ -1,8 +1,8 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native"
 
 import { Colors } from "../../../../Styling"
-import { IconStyle } from "../../../../SharedComponents/Icon"
-import { DEFAULT_HEADER_HEIGHT } from "../../../../SharedComponents/NavigationHeader"
+import { IconStyle } from "../../../../Shared/components/Icon"
+import { DEFAULT_HEADER_HEIGHT } from "../../../../Shared/components/NavigationHeader"
 
 
 export const styles = StyleSheet.create({

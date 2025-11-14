@@ -1,21 +1,24 @@
 import React from "react"
+import { Keyboard, Text, TouchableWithoutFeedback, View } from "react-native"
 
 import { Header } from "./components/Header"
 import { useNavigation } from "../../Navigation"
 import { useBootstrap } from "../../Services/Bootstrap"
 import { LookupCity } from "../../Api"
-import { Text, View } from "react-native"
+import { useCitiesSearch } from "./hooks/useCitiesSearch"
 
 export const CityListScreen: React.FunctionComponent = () => {
   const { goBack } = useNavigation()
   const { api } = useBootstrap()
-  const [ isSearchActive, setIsSearchActive ] = React.useState(false)
-  const [ searchValue, setSearchValue ] = React.useState("")
-  const [ cities, setCities ] = React.useState<Array<LookupCity>>([])
 
-  const toggleSearch = () => {
-    setIsSearchActive((prev) => !prev)
-  }
+  const { 
+    searchTextRef,
+    searchValue, 
+    isSearchActive, 
+    setSearchValue,
+    toggleSearch,
+  } = useCitiesSearch()
+  const [ cities, setCities ] = React.useState<Array<LookupCity>>([])
 
   const fetchCities = async(city: string) => {
     try {
@@ -34,21 +37,24 @@ export const CityListScreen: React.FunctionComponent = () => {
   }, [ isSearchActive, searchValue ])
 
   return (
-    <>
-      <Header 
-        isSearchActive={isSearchActive} 
-        onSearchValueChange={setSearchValue}
-        onToggleSearch={toggleSearch}
-        onPressBack={goBack}
-      />
-      <View>
-        {cities.map((city) => (
-          <View key={city.id}>
-            <Text>{city.name}, {city.country}</Text>
-          </View>
-        ))}
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={{ flex: 1 }}>
+        <Header 
+          textInputRef={searchTextRef}
+          isSearchActive={isSearchActive} 
+          onSearchValueChange={setSearchValue}
+          onToggleSearch={toggleSearch}
+          onPressBack={goBack}
+        />
+        <View>
+          {cities.map((city) => (
+            <View key={city.id}>
+              <Text>{city.name}, {city.country}</Text>
+            </View>
+          ))}
+        </View>
+        {/* {isSearchActive && <View style={styles.overlay}/>} */}
       </View>
-      {/* {isSearchActive && <View style={styles.overlay}/>} */}
-    </>
+    </TouchableWithoutFeedback>
   )
 }

@@ -1,8 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native"
 
 import { Colors } from "../../../../Styling"
-import { IconButtonStyle, IconStyle } from "../../../../SharedComponents/Icon"
-
+import { IconButtonStyle, IconStyle } from "../../../../Shared/components/Icon"
 
 export const styles = StyleSheet.create({
   header: {

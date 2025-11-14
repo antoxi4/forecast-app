@@ -3,8 +3,8 @@ import { Text, View } from "react-native"
 
 import { styles } from "./Header.styles"
 import { defaultHitSlop } from "../../../../Styling"
-import { Icon, IconButton, IconName } from "../../../../SharedComponents/Icon"
-import { NavigationHeaderContainer } from "../../../../SharedComponents/NavigationHeaderContainer"
+import { Icon, IconName, IconButton } from "../../../../Shared/components/Icon"
+import { NavigationHeaderContainer } from "../../../../Shared/components/NavigationHeaderContainer"
 
 interface HeaderProps {
   cityName?: string;

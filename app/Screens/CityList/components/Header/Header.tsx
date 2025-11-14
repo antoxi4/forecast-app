@@ -3,10 +3,11 @@ import { TextInput } from "react-native"
 
 import { styles } from "./Header.styles"
 import { defaultHitSlop } from "../../../../Styling"
-import { IconButton, IconName } from "../../../../SharedComponents/Icon"
-import { NavigationHeader } from "../../../../SharedComponents/NavigationHeader/NavigationHeader"
+import { IconName, IconButton } from "../../../../Shared/components/Icon"
+import { NavigationHeader } from "../../../../Shared/components/NavigationHeader"
 
 interface HeaderProps {
+  textInputRef?: React.RefObject<TextInput>;
   isSearchActive?: boolean;
   onSearchValueChange?: (value: string) => void;
   onToggleSearch: () => void;
@@ -14,6 +15,7 @@ interface HeaderProps {
 }
   
 const HeaderComponent: React.FunctionComponent<HeaderProps> = ({ 
+  textInputRef,
   isSearchActive, 
   onSearchValueChange,
   onToggleSearch,
@@ -27,7 +29,13 @@ const HeaderComponent: React.FunctionComponent<HeaderProps> = ({
       disableBackButton={isSearchActive}
       onPressBack={onPressBack}
     >
-      {isSearchActive && <TextInput style={styles.locationContainer} onChangeText={onSearchValueChange}/>}
+      {isSearchActive && (
+        <TextInput 
+          autoFocus 
+          ref={textInputRef}
+          style={styles.locationContainer} 
+          onChangeText={onSearchValueChange}/>
+      )}
       <IconButton 
         hitSlop={defaultHitSlop}
         buttonStyle={styles.cityListButton} 

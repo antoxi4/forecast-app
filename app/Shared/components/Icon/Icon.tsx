@@ -1,7 +1,8 @@
+import { useMemo } from "react"
 import { StyleProp, StyleSheet, Text, TextStyle } from "react-native"
+
 import { styles } from "./Icon.styles"
 import { IconName } from "./Constants"
-import { useMemo } from "react"
 
 export type IconStyle = Omit<TextStyle, 'fontFamily' | 'width' | 'height'> & {
   size?: number;
