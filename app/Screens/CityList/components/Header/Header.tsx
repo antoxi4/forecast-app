@@ -37,6 +37,7 @@ const HeaderComponent: React.FunctionComponent<HeaderProps> = ({
         <CustomTextField
           autoFocus
           value={searchValue}
+          hitSlop={defaultHitSlop}
           placeholder="Search city"
           isLoading={isSearchLoading}
           iconName={IconName.search}
