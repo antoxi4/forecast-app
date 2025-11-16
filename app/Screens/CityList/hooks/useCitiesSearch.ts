@@ -1,18 +1,18 @@
-import { TextInput } from "react-native"
-import { RefObject, useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
+
 import { useBootstrap } from "../../../Services/Bootstrap"
 import { LookupCity } from "../../../Api"
 import { useThrottling } from "../../../Shared/hooks/useThrottling"
 
 interface SearchState {
-  isSearchLoading?: boolean;
+  isSearchLoading: boolean;
   isSearchActive: boolean;
   searchValue: string;
 }
 
 interface UseCitiesSearchResult {
   foundCities: Array<LookupCity>;
-  searchTextRef: RefObject<TextInput | null>
+  isSearchLoading: boolean;
   searchValue: string;
   isSearchActive: boolean;
   toggleSearch: () => void;
@@ -24,18 +24,18 @@ export const useCitiesSearch = (): UseCitiesSearchResult => {
   const { api } = useBootstrap()
   const searchThrottler = useThrottling(800)
 
-  const searchTextRef = useRef<TextInput>(null)
   const [ foundCities, setFoundCities ] = useState<Array<LookupCity>>([])
   
   const [ 
     isSearchActive, 
     setIsSearchActive, 
-  ] = useState<SearchState>({ isSearchActive: false, searchValue: '' })
+  ] = useState<SearchState>({ isSearchActive: false, searchValue: '', isSearchLoading: false })
 
   const toggleSearch = useCallback(() => {
     setIsSearchActive((prevState) => ({ 
       isSearchActive: !prevState.isSearchActive, 
       searchValue: '', 
+      isSearchLoading: false,
     }))
   }, [])
 
@@ -75,12 +75,12 @@ export const useCitiesSearch = (): UseCitiesSearchResult => {
   }, [ isSearchActive.searchValue, isSearchActive.isSearchActive ])
 
   const turnOffSearch = useCallback(() => {
-    setIsSearchActive({ isSearchActive: false, searchValue: '' })
+    setIsSearchActive({ isSearchActive: false, searchValue: '', isSearchLoading: false })
   }, [])
 
   return {
     foundCities,
-    searchTextRef,
+    isSearchLoading: isSearchActive.isSearchLoading ?? false,
     isSearchActive: isSearchActive.isSearchActive,
     searchValue: isSearchActive.searchValue,
     toggleSearch,

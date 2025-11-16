@@ -11,9 +11,17 @@ export const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 8,
     height: DEFAULT_HEADER_HEIGHT,
-    flexDirection: "column",
-    color: Colors.textPrimary,
     backgroundColor: Colors.backgroundTertiary,
+  },
+  locationText: <TextStyle>{
+    fontSize: 16,
+    color: Colors.textPrimary,
+    lineHeight: 16,
+  },
+  placeHolderText: <TextStyle>{
+    fontSize: 16,
+    color: Colors.textSecondary,
+    lineHeight: 16,
   },
   cityListButton: <ViewStyle> {
     alignSelf: 'flex-end',

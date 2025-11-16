@@ -14,8 +14,9 @@ export const CityListScreen: React.FunctionComponent = () => {
   const { goBack } = useNavigation()
 
   const { 
+    isSearchLoading,
+    searchValue,
     foundCities, 
-    searchTextRef,
     isSearchActive, 
     setSearchValue,
     toggleSearch,
@@ -33,8 +34,9 @@ export const CityListScreen: React.FunctionComponent = () => {
   
     <>
       <Header 
-        textInputRef={searchTextRef}
+        searchValue={searchValue}
         isSearchActive={isSearchActive} 
+        isSearchLoading={isSearchLoading}
         onSearchValueChange={setSearchValue}
         onToggleSearch={toggleSearch}
         onPressBack={goBack}

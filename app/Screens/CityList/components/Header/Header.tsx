@@ -1,13 +1,15 @@
 import React from "react"
-import { Text, TextInput, TouchableOpacity } from "react-native"
+import { Text, TouchableOpacity } from "react-native"
 
 import { styles } from "./Header.styles"
 import { defaultHitSlop } from "../../../../Styling"
 import { IconName, IconButton } from "../../../../Shared/components/Icon"
 import { NavigationHeader } from "../../../../Shared/components/NavigationHeader"
+import { CustomTextField } from "../../../../Shared/components/CustomTextField"
 
 interface HeaderProps {
-  textInputRef?: React.RefObject<TextInput | null>;
+  isSearchLoading?: boolean;
+  searchValue?: string;
   isSearchActive?: boolean;
   onLayout?: () => void;
   onSearchValueChange?: (value: string) => void;
@@ -15,8 +17,9 @@ interface HeaderProps {
   onPressBack: () => void;
 }
   
-const HeaderComponent: React.FunctionComponent<HeaderProps> = ({ 
-  textInputRef,
+const HeaderComponent: React.FunctionComponent<HeaderProps> = ({
+  isSearchLoading,
+  searchValue,
   isSearchActive, 
   onSearchValueChange,
   onToggleSearch,
@@ -31,12 +34,16 @@ const HeaderComponent: React.FunctionComponent<HeaderProps> = ({
       onPressBack={onPressBack}
     >
       {isSearchActive && (
-        <TextInput 
-          autoFocus 
-          ref={textInputRef}
+        <CustomTextField
+          autoFocus
           multiline={false}
+          value={searchValue}
           placeholder="Search city"
-          style={styles.locationContainer} 
+          isLoading={isSearchLoading}
+          iconName={IconName.search}
+          style={styles.locationText}
+          placeholderStyle={styles.placeHolderText}
+          containerStyle={styles.locationContainer}
           onChangeText={onSearchValueChange}/>
       )}
       {isSearchActive ? (
