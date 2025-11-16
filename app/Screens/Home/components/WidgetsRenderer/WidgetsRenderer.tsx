@@ -20,6 +20,7 @@ export interface WidgetsRendererProps extends WidgetProps {
 export const WidgetsRendererComponent: React.FunctionComponent<WidgetsRendererProps> = ({ data, configuration }) => {
   const renderWidgetsRow = (widgets: WidgetComponent | WidgetComponent[], rowIndex: number): React.ReactNode => {
     if (Array.isArray(widgets)) {
+      
       return (
         <View key={`widgets-row-${ rowIndex }`} style={[ styles.splittedRow ]}>
           {widgets.map((WidgetComponent, widgetIndex) => (

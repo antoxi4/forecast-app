@@ -10,6 +10,10 @@ export interface UseActiveCityWeather {
   minTemperatureC?: number;
   maxTemperatureC?: number;
   conditionText?: string;
+  windSpeedKph?: number;
+  windGustKph?: number;
+  windDirection?: string;
+  windDegree?: number;
 }
 
 export const useActiveCityWeather = (cityName?: string): UseActiveCityWeather => {
@@ -44,6 +48,10 @@ export const useActiveCityWeather = (cityName?: string): UseActiveCityWeather =>
       minTemperatureC: nearestForecast?.day.mintemp_c,
       maxTemperatureC: nearestForecast?.day.maxtemp_c,
       conditionText: currentForecast?.current.condition.text,
+      windSpeedKph: currentForecast?.current.wind_kph,
+      windGustKph: currentForecast?.current.gust_kph,
+      windDirection: currentForecast?.current.wind_dir,
+      windDegree: currentForecast?.current.wind_degree,
     }
   }, [ currentForecast ])
 }

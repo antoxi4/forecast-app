@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 16,
     overflow: "hidden",
-    flexDirection: "row",
+    flexDirection: 'column',
     padding: 12,
     backgroundColor: Colors.backgroundTertiary,
   },
@@ -18,6 +18,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     alignSelf: "flex-start",
+    marginBottom: 14,
   },
   title: <TextStyle>{
     marginLeft: 6,

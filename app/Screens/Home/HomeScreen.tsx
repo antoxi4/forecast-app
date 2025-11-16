@@ -17,6 +17,7 @@ const widgetsConfiguration: WidgetsConfiguration = [
 ]
 
 const scrollViewEdges: SafeAreaScrollViewEdges = [ 'bottom' ]
+
 export const HomeScreen: React.FunctionComponent = () => {
   const { store } = useBootstrap()
   const navigation = useNavigation()
@@ -41,9 +42,16 @@ export const HomeScreen: React.FunctionComponent = () => {
           source={require('../../Assets/images/weatherState/sun_cloudy_color.png')} 
           style={styles.weatherStateImage} 
         />
-        <Text style={styles.condition}>{cityWeather?.conditionText}</Text> 
-        <Text style={styles.temperature}>{cityWeather?.currentTemperatureC?.toFixed(0) ?? '0'}°</Text>
-        <Text style={styles.condition}>H:{cityWeather?.maxTemperatureC?.toFixed(0) ?? '0'}° L: {cityWeather?.minTemperatureC?.toFixed(0) ?? '0'}°</Text>
+        
+        <Text style={styles.condition}>
+          {cityWeather?.conditionText}
+        </Text> 
+        <Text style={styles.temperature}>
+          {cityWeather?.currentTemperatureC?.toFixed(0) ?? '0'}°
+        </Text>
+        <Text style={styles.condition}>
+          H:{cityWeather?.maxTemperatureC?.toFixed(0) ?? '0'}° L: {cityWeather?.minTemperatureC?.toFixed(0) ?? '0'}°
+        </Text>
 
         <WidgetsRenderer 
           configuration={widgetsConfiguration}
