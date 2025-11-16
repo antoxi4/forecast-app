@@ -7,6 +7,7 @@ interface UseStoreCityResult {
   activeCity: LookupCity | undefined
   cities: Array<LookupCity>
   setActiveCity?: (cityId: number) => void
+  deleteCity?: (cityId: number) => void
 }
 
 export const useStoredCitiesList = (): UseStoreCityResult => {
@@ -29,5 +30,25 @@ export const useStoredCitiesList = (): UseStoreCityResult => {
     }
   }, [])
 
-  return { activeCity, cities: storedCities, setActiveCity }
+  const deleteCity = useCallback((cityId: number) => {
+    const filteredCities = storedCities.filter(c => c.id !== cityId)
+
+    if (filteredCities.length === 0) {
+      store.activeCity.removeValue()
+      store.storedCities.removeValue()
+      return
+    }
+    const rawCitiesDuplicate = { ...rawStoredCities }
+    delete rawCitiesDuplicate[ cityId ]
+
+    if (cityId === activeCity?.id) {
+      const [ firstStored ] = filteredCities
+      
+      store.activeCity.setValue(firstStored)
+    }
+
+    store.storedCities.setValue(rawCitiesDuplicate)
+  }, [ storedCities, activeCity ])
+
+  return { activeCity, cities: storedCities, setActiveCity, deleteCity }
 }

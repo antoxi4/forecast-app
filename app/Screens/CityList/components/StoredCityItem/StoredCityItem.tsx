@@ -1,10 +1,10 @@
+import { memo } from "react"
 import { Text, TouchableOpacity, View } from "react-native"
 
 import { styles } from "./StoredCityItem.styles"
-import { memo } from "react"
 import { CheckMark } from "../../../../Shared/components/CheckMark"
 
-interface StoredCityItemProps {
+export interface StoredCityItemProps {
   cityId: number
   cityName: string
   selected: boolean
@@ -20,7 +20,11 @@ export const StoredCityItemComponent: React.FunctionComponent<StoredCityItemProp
   onPress, 
 }: StoredCityItemProps) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress ? () => onPress(cityId) : undefined}>
+    <TouchableOpacity 
+      activeOpacity={0.7} 
+      style={styles.container} 
+      onPress={onPress ? () => onPress(cityId) : undefined}
+    >
       <View style={styles.cityInfoContainer}>
         <Text 
           numberOfLines={1} 

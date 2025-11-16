@@ -23,5 +23,6 @@ export const styles = StyleSheet.create({
   cityInfoContainer: <ViewStyle>{
     flexDirection: "column",
     flex: 1,
+    marginRight: 8,
   },
 })

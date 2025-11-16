@@ -11,7 +11,12 @@ export class ActiveCityProvider extends BaseProvider<LookupCity> {
     return value ? JSON.parse(value) : undefined
   }
 
-  setValue = (value: LookupCity): void =>{
+  setValue = (value?: LookupCity): void =>{
+    if (!value) {
+      this.mmkv.remove(this.key)
+      return
+    }
+    
     this.mmkv.set(this.key, JSON.stringify(value))
   }
 

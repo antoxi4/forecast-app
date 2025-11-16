@@ -8,4 +8,5 @@ export enum Colors {
   textSecondary = '#AAAAAA',
   accentPrimary = '#00ABBD',
   accentSecondary = '#FF9933',
+  danger = '#e66f00ff',
 }
