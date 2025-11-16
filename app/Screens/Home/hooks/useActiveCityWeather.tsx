@@ -3,6 +3,8 @@ import { useCallback, useMemo, useState } from "react"
 
 import { useBootstrap } from "../../../Services/Bootstrap"
 import { WeatherConditionCode, WeatherForecastResponse } from "../../../Api"
+import { usePolling } from "../../../Shared/hooks/usePolling"
+import { Alert } from "react-native"
 
 export interface UseActiveCityWeather {
   locationDate?: Date;
@@ -20,20 +22,40 @@ export interface UseActiveCityWeather {
   isDay?: boolean;
 }
 
+const POOLING_INTERVAL_MS = 6000
+
 export const useActiveCityWeather = (cityName?: string): UseActiveCityWeather => {
   const { api } = useBootstrap()
   const [ currentForecast, setCurrentForecast ] = useState<WeatherForecastResponse | null>(null)
+  const { setCallback } = usePolling(POOLING_INTERVAL_MS)
+
+  const pollCityForecast = useCallback(async (name: string) => {
+    try {
+      const response = await api.source.weather.getForecastByCity(name)
+    
+      setCurrentForecast(response.data) 
+    } catch (error) {
+      console.error("Polling error fetching city forecast:", error)
+    }
+  }, [ api, cityName ])
 
   const fetchCityForecast = useCallback(async () => {
-    if (!cityName) {
-      return
-    }
+    try {
+      if (!cityName) {
+        return
+      }
 
-    const response = await api.source.weather.getForecastByCity(cityName)
+      const response = await api.source.weather.getForecastByCity(cityName)
     
-    console.log(response.data)
-    setCurrentForecast(response.data)
+      setCurrentForecast(response.data)
+      setCallback(() => pollCityForecast(cityName))
+    } catch (error) {
+      console.error("Error fetching city forecast:", error)
+      Alert.alert("Error", "Failed to fetch weather data.")
+    }
+    
   }, [ api, cityName ])
+
 
   useFocusEffect(
     useCallback(() => {
