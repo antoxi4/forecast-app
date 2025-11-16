@@ -16,6 +16,6 @@ export const styles = StyleSheet.create({
     fontSize: 12,
   },
   divider: <ViewStyle>{
-    marginVertical: 8,
+    marginVertical: 12,
   },
 })

@@ -14,6 +14,7 @@ export interface UseActiveCityWeather {
   windGustKph?: number;
   windDirection?: string;
   windDegree?: number;
+  feelLikeC?: number;
 }
 
 export const useActiveCityWeather = (cityName?: string): UseActiveCityWeather => {
@@ -52,6 +53,7 @@ export const useActiveCityWeather = (cityName?: string): UseActiveCityWeather =>
       windGustKph: currentForecast?.current.gust_kph,
       windDirection: currentForecast?.current.wind_dir,
       windDegree: currentForecast?.current.wind_degree,
+      feelLikeC: currentForecast?.current.feelslike_c,
     }
   }, [ currentForecast ])
 }

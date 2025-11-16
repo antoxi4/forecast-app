@@ -4,12 +4,12 @@ import React, { useCallback } from "react"
 import { styles } from "./HomeScreen.styles"
 import { Header } from "./components/Header"
 import { useBootstrap } from "../../Services/Bootstrap"
-import { Routes, useNavigation } from "../../Navigation"
-import { useActiveCityWeather } from "./hooks/useActiveCityWeather"
-import { SafeAreaScrollView, SafeAreaScrollViewEdges } from "../../Shared/components/SafeAreaScrollView"
-import { WidgetsConfiguration, WidgetsRenderer } from "./components/WidgetsRenderer"
 import { FeelsLikeWidget } from "./components/Widgets/FeelsLike"
+import { useActiveCityWeather } from "./hooks/useActiveCityWeather"
+import { Routes, useNavigation } from "../../Navigation"
 import { UVIndexWidget, WindWidget } from "./components/Widgets"
+import { WidgetsConfiguration, WidgetsRenderer } from "./components/WidgetsRenderer"
+import { SafeAreaScrollView, SafeAreaScrollViewEdgeMerge, SafeAreaScrollViewEdges } from "../../Shared/components/SafeAreaScrollView"
 
 const widgetsConfiguration: WidgetsConfiguration = [
   [ FeelsLikeWidget, UVIndexWidget ],
@@ -17,6 +17,9 @@ const widgetsConfiguration: WidgetsConfiguration = [
 ]
 
 const scrollViewEdges: SafeAreaScrollViewEdges = [ 'bottom' ]
+const scrollViewEdgeMerge: SafeAreaScrollViewEdgeMerge = {
+  bottom: 16,
+}
 
 export const HomeScreen: React.FunctionComponent = () => {
   const { store } = useBootstrap()
@@ -37,12 +40,15 @@ export const HomeScreen: React.FunctionComponent = () => {
         date={cityWeather.locationDate}
         onCityListPress={navigateToCityList}
       />
-      <SafeAreaScrollView safeAreaEdges={scrollViewEdges}>
+      <SafeAreaScrollView 
+        safeAreaEdges={scrollViewEdges} 
+        safeAreaEdgeMerge={scrollViewEdgeMerge}
+      >
         <Image 
           source={require('../../Assets/images/weatherState/sun_cloudy_color.png')} 
           style={styles.weatherStateImage} 
         />
-        
+
         <Text style={styles.condition}>
           {cityWeather?.conditionText}
         </Text> 
