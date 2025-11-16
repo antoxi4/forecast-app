@@ -1,10 +1,10 @@
+import { Alert } from "react-native"
 import { useFocusEffect } from "@react-navigation/native"
 import { useCallback, useMemo, useState } from "react"
 
+import { usePolling } from "../../../Shared/hooks/usePolling"
 import { useBootstrap } from "../../../Services/Bootstrap"
 import { WeatherConditionCode, WeatherForecastResponse } from "../../../Api"
-import { usePolling } from "../../../Shared/hooks/usePolling"
-import { Alert } from "react-native"
 
 export interface UseActiveCityWeather {
   locationDate?: Date;
@@ -22,14 +22,14 @@ export interface UseActiveCityWeather {
   isDay?: boolean;
 }
 
-const POOLING_INTERVAL_MS = 6000
+const POLLING_INTERVAL_MS = 10000
 
 export const useActiveCityWeather = (cityName?: string): UseActiveCityWeather => {
   const { api } = useBootstrap()
   const [ currentForecast, setCurrentForecast ] = useState<WeatherForecastResponse | null>(null)
-  const { setCallback } = usePolling(POOLING_INTERVAL_MS)
+  const { setCallback } = usePolling(POLLING_INTERVAL_MS)
 
-  const pollCityForecast = useCallback(async (name: string) => {
+  const pollCityForecast = async (name: string): Promise<void> => {
     try {
       const response = await api.source.weather.getForecastByCity(name)
     
@@ -37,9 +37,9 @@ export const useActiveCityWeather = (cityName?: string): UseActiveCityWeather =>
     } catch (error) {
       console.error("Polling error fetching city forecast:", error)
     }
-  }, [ api, cityName ])
+  }
 
-  const fetchCityForecast = useCallback(async () => {
+  const fetchCityForecast = useCallback(async (): Promise<void> => {
     try {
       if (!cityName) {
         return
