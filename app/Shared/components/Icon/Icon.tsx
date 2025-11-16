@@ -4,9 +4,7 @@ import { StyleProp, StyleSheet, Text, TextStyle } from "react-native"
 import { styles } from "./Icon.styles"
 import { IconName } from "./Constants"
 
-export type IconStyle = Omit<TextStyle, 'fontFamily' | 'width' | 'height'> & {
-  size?: number;
-}
+export type IconStyle = Omit<TextStyle, 'fontFamily' | 'width' | 'height'> 
 
 export interface IconProps {
   name: IconName;

@@ -6,7 +6,17 @@ import { Header } from "./components/Header"
 import { useBootstrap } from "../../Services/Bootstrap"
 import { Routes, useNavigation } from "../../Navigation"
 import { useActiveCityWeather } from "./hooks/useActiveCityWeather"
+import { SafeAreaScrollView, SafeAreaScrollViewEdges } from "../../Shared/components/SafeAreaScrollView"
+import { WidgetsConfiguration, WidgetsRenderer } from "./components/WidgetsRenderer"
+import { FeelsLikeWidget } from "./components/Widgets/FeelsLike"
+import { UVIndexWidget, WindWidget } from "./components/Widgets"
 
+const widgetsConfiguration: WidgetsConfiguration = [
+  [ FeelsLikeWidget, UVIndexWidget ],
+  WindWidget,
+]
+
+const scrollViewEdges: SafeAreaScrollViewEdges = [ 'bottom' ]
 export const HomeScreen: React.FunctionComponent = () => {
   const { store } = useBootstrap()
   const navigation = useNavigation()
@@ -26,13 +36,21 @@ export const HomeScreen: React.FunctionComponent = () => {
         date={cityWeather.locationDate}
         onCityListPress={navigateToCityList}
       />
-      <Image 
-        source={require('../../Assets/images/weatherState/sun_cloudy_color.png')} 
-        style={styles.weatherStateImage} 
-      />
-      <Text style={styles.condition}>{cityWeather?.conditionText}</Text> 
-      <Text style={styles.temperature}>{cityWeather?.currentTemperatureC?.toFixed(0) ?? '0'}°</Text>
-      <Text style={styles.condition}>H:{cityWeather?.maxTemperatureC?.toFixed(0) ?? '0'}° L: {cityWeather?.minTemperatureC?.toFixed(0) ?? '0'}°</Text>
+      <SafeAreaScrollView safeAreaEdges={scrollViewEdges}>
+        <Image 
+          source={require('../../Assets/images/weatherState/sun_cloudy_color.png')} 
+          style={styles.weatherStateImage} 
+        />
+        <Text style={styles.condition}>{cityWeather?.conditionText}</Text> 
+        <Text style={styles.temperature}>{cityWeather?.currentTemperatureC?.toFixed(0) ?? '0'}°</Text>
+        <Text style={styles.condition}>H:{cityWeather?.maxTemperatureC?.toFixed(0) ?? '0'}° L: {cityWeather?.minTemperatureC?.toFixed(0) ?? '0'}°</Text>
+
+        <WidgetsRenderer 
+          configuration={widgetsConfiguration}
+          data={cityWeather}
+        />
+
+      </SafeAreaScrollView>
     </>
   )
 }

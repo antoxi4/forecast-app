@@ -4,7 +4,7 @@ import { useCallback, useMemo, useState } from "react"
 import { useBootstrap } from "../../../Services/Bootstrap"
 import { WeatherForecastResponse } from "../../../Api"
 
-interface UseActiveCityWeather {
+export interface UseActiveCityWeather {
   locationDate?: Date;
   currentTemperatureC?: number;
   minTemperatureC?: number;
@@ -23,6 +23,7 @@ export const useActiveCityWeather = (cityName?: string): UseActiveCityWeather =>
 
     const response = await api.source.weather.getForecastByCity(cityName)
     
+    console.log(response.data)
     setCurrentForecast(response.data)
   }, [ api, cityName ])
 
