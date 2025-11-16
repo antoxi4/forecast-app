@@ -3,7 +3,8 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "types/**/*.d.ts"
+    "types/**/*.d.ts",
+    "index.js"
   ],
   "exclude": [
     "**/node_modules",

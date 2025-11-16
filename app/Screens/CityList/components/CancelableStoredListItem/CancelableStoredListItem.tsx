@@ -8,12 +8,14 @@ import { StoredCityItemComponent, StoredCityItemProps } from "../StoredCityItem"
 
 interface CancelableStoredListItemProps extends StoredCityItemProps {
   onDelete?: (id: number) => void
+  onSwipeStart?: () => void
+  onSwipeEnd?: () => void
 }
 
 export const CancelableStoredListItem: React.FunctionComponent<CancelableStoredListItemProps> = (
-  { onDelete, ...originalProps }: CancelableStoredListItemProps
+  { onDelete, onSwipeStart, onSwipeEnd, ...originalProps }: CancelableStoredListItemProps
 ) => {
-  const { panResponder, animatedValue, backOnStart } = useSwappableListItem()
+  const { panResponder, animatedValue, backOnStart } = useSwappableListItem({ onSwipeStart, onSwipeEnd })
 
   const animatedStyle = useMemo(() =>({
     flex: 1,

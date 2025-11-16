@@ -8,7 +8,13 @@ interface SwappableListItemResult {
   animatedValue: Animated.Value
   backOnStart: () => Promise<void>
 }
-export const useSwappableListItem = (): SwappableListItemResult => {
+
+interface SwappableListItemParams {
+  onSwipeStart?: () => void
+  onSwipeEnd?: () => void
+}
+
+export const useSwappableListItem = (params: SwappableListItemParams = {}): SwappableListItemResult => {
   const animatedValue = useRef(new Animated.Value(0, { useNativeDriver: true })).current
 
   const panResponder = useRef(
@@ -20,9 +26,13 @@ export const useSwappableListItem = (): SwappableListItemResult => {
       },
       onStartShouldSetPanResponder: () => false,
       onMoveShouldSetPanResponder: (_e: GestureResponderEvent, state: PanResponderGestureState) => {
-        return Math.abs(state.dx) > 5
+        const isHorizontalSwipe = Math.abs(state.dx) > Math.abs(state.dy) && Math.abs(state.dx) > 5
+        
+        if (isHorizontalSwipe) {
+          params.onSwipeStart?.()
+        }
+        return isHorizontalSwipe
       },
-     
 
       onPanResponderMove: (_e: GestureResponderEvent, state: PanResponderGestureState) => {
         const newX = state.dx
@@ -40,6 +50,7 @@ export const useSwappableListItem = (): SwappableListItemResult => {
       },
 
       onPanResponderRelease: () => {
+        params.onSwipeEnd?.()
         animatedValue.flattenOffset()
         
         // @ts-ignore - Accessing internal value

@@ -1,4 +1,4 @@
-import { useCallback } from "react"
+import { useCallback, useState } from "react"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { LayoutAnimation, ScrollView, ViewStyle } from "react-native"
 
@@ -9,6 +9,7 @@ import { CancelableStoredListItem } from "../CancelableStoredListItem/Cancelable
 
 export const StoredList: React.FunctionComponent = () => {
   const { bottom } = useSafeAreaInsets()
+  const [ scrollEnabled, setScrollEnabled ] = useState(true)
   const { cities, activeCity, setActiveCity, deleteCity } = useStoredCitiesList()
   
   const hasNoCities = cities.length === 0
@@ -21,13 +22,26 @@ export const StoredList: React.FunctionComponent = () => {
       deleteCity(cityId)
     }
   }, [ deleteCity ])
+  
+  const onSwipeStart = useCallback(() => {
+    setScrollEnabled(false)
+  }, [])
+  
+  const onSwipeEnd = useCallback(() => {
+    setScrollEnabled(true)
+  }, [])
 
   if (hasNoCities) {
     return <EmptyState />
   }
 
+
   return (
-    <ScrollView style={styles.container} contentContainerStyle={[ styles.contentContainer, contentContainerStyle ]}>
+    <ScrollView 
+      style={styles.container} 
+      scrollEnabled={scrollEnabled}
+      contentContainerStyle={[ styles.contentContainer, contentContainerStyle ]}
+    >
       {cities.map(city => (
         <CancelableStoredListItem
           key={city.id}
@@ -37,6 +51,8 @@ export const StoredList: React.FunctionComponent = () => {
           selected={activeCity?.id === city.id}
           onPress={setActiveCity}
           onDelete={handleDeleteCity}
+          onSwipeStart={onSwipeStart}
+          onSwipeEnd={onSwipeEnd}
         />
       ))}
     </ScrollView>
