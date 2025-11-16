@@ -25,4 +25,12 @@ export const styles = StyleSheet.create({
     color: Colors.textPrimary,
     fontSize: 32,
   },
+  cancelButton: <ViewStyle>{
+    marginLeft: 12,
+    justifyContent: "center",
+  },
+  cancelButtonText: <TextStyle>{
+    color: Colors.textPrimary,
+    fontSize: 16,
+  },
 })

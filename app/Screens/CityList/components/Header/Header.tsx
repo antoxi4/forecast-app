@@ -1,5 +1,5 @@
 import React from "react"
-import { TextInput } from "react-native"
+import { Text, TextInput, TouchableOpacity } from "react-native"
 
 import { styles } from "./Header.styles"
 import { defaultHitSlop } from "../../../../Styling"
@@ -34,16 +34,27 @@ const HeaderComponent: React.FunctionComponent<HeaderProps> = ({
         <TextInput 
           autoFocus 
           ref={textInputRef}
+          multiline={false}
+          placeholder="Search city"
           style={styles.locationContainer} 
           onChangeText={onSearchValueChange}/>
       )}
-      <IconButton 
-        hitSlop={defaultHitSlop}
-        buttonStyle={styles.cityListButton} 
-        name={searchIcon} 
-        style={styles.icon} 
-        onPress={onToggleSearch}
-      />
+      {isSearchActive ? (
+        <TouchableOpacity 
+          onPress={onToggleSearch} 
+          style={styles.cancelButton}
+        >
+          <Text style={styles.cancelButtonText}>Cancel</Text>
+        </TouchableOpacity>
+      ) : (
+        <IconButton 
+          hitSlop={defaultHitSlop}
+          buttonStyle={styles.cityListButton} 
+          name={searchIcon} 
+          style={styles.icon} 
+          onPress={onToggleSearch}
+        />
+      )}
     </NavigationHeader>
   )
 }
