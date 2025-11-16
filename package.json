@@ -25,6 +25,7 @@
     "axios": "^1.13.2",
     "react": "19.1.1",
     "react-native": "0.82.1",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-mmkv": "^4.0.0",
     "react-native-nitro-modules": "^0.31.5",
     "react-native-safe-area-context": "^5.5.2",

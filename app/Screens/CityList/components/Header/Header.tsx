@@ -7,8 +7,9 @@ import { IconName, IconButton } from "../../../../Shared/components/Icon"
 import { NavigationHeader } from "../../../../Shared/components/NavigationHeader"
 
 interface HeaderProps {
-  textInputRef?: React.RefObject<TextInput>;
+  textInputRef?: React.RefObject<TextInput | null>;
   isSearchActive?: boolean;
+  onLayout?: () => void;
   onSearchValueChange?: (value: string) => void;
   onToggleSearch: () => void;
   onPressBack: () => void;

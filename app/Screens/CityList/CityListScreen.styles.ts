@@ -1,28 +1,7 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native"
-
-import { Colors } from "../../Styling"
+import { StyleSheet, ViewStyle } from "react-native"
 
 export const styles = StyleSheet.create({
-  weatherStateImage: <ImageStyle>{
-    marginTop: 36,
-    alignSelf: 'center',
-  },
-  temperature: <TextStyle>{
-    alignSelf: 'center',
-    color: Colors.textPrimary,
-    fontWeight: "bold",
-    marginTop: 6,
-    fontSize: 52,
-  },
-  condition: <TextStyle>{
-    alignSelf: 'center',
-    color: Colors.textPrimary,
-    marginTop: 6,
-    fontSize: 16,
-  },
-  overlay: <ViewStyle>{
-    backgroundColor: 'black', 
-    opacity: 0.3,
-    ...StyleSheet.absoluteFill, 
+  listContainer: <ViewStyle>{
+    flex: 1,
   },
 })

@@ -1,9 +1,5 @@
-export interface StoredCity {
-  id: string;
-  name: string;
-  country: string;
-}
+import { LookupCity } from "../../Api"
 
 export interface StoredCityList {
-  [key: string]: StoredCity[];
+  [key: string]: LookupCity;
 }

@@ -9,6 +9,7 @@ interface NavigationHeaderProps {
   children?: React.ReactNode;
   backButtonVisible?: boolean;
   disableBackButton?: boolean;
+  onLayout?: () => void;
   onPressBack?: () => void;
 }
 
@@ -17,13 +18,14 @@ export const NavigationHeader: React.FunctionComponent<NavigationHeaderProps> = 
   containerStyle,
   disableBackButton,
   backButtonVisible = true,
+  onLayout,
   onPressBack,
 }: NavigationHeaderProps) => {
   const showBackButton = Boolean(onPressBack && backButtonVisible)
   const isBackButtonDisabled = !onPressBack || disableBackButton
   
   return (
-    <NavigationHeaderContainer style={containerStyle}>
+    <NavigationHeaderContainer style={containerStyle} onLayout={onLayout}>
       {showBackButton && (
         <IconButton 
           name={IconName.arrowBackNew} 

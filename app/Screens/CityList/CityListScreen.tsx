@@ -1,60 +1,51 @@
-import React from "react"
-import { Keyboard, Text, TouchableWithoutFeedback, View } from "react-native"
+import React, { useCallback } from "react"
+import { View } from "react-native"
 
 import { Header } from "./components/Header"
 import { useNavigation } from "../../Navigation"
-import { useBootstrap } from "../../Services/Bootstrap"
-import { LookupCity } from "../../Api"
 import { useCitiesSearch } from "./hooks/useCitiesSearch"
+import { LookupCity } from "../../Api"
+import { SearchList } from "./components/SearchList"
+import { StoredList } from "./components/StoredList/StoredList"
+import { styles } from "./CityListScreen.styles"
+import { useStoreCity } from "../../Shared/hooks/useStoreCities"
 
 export const CityListScreen: React.FunctionComponent = () => {
   const { goBack } = useNavigation()
-  const { api } = useBootstrap()
 
   const { 
+    foundCities, 
     searchTextRef,
-    searchValue, 
     isSearchActive, 
     setSearchValue,
     toggleSearch,
+    turnOffSearch,
   } = useCitiesSearch()
-  const [ cities, setCities ] = React.useState<Array<LookupCity>>([])
+  const { storeCity } = useStoreCity()
 
-  const fetchCities = async(city: string) => {
-    try {
-      const response = await api.source.weather.lookupCity(city)
 
-      setCities(response.data)
-    } catch (error) {
-      console.error('Error looking up cities:', error)
-    }
-  }
-
-  React.useEffect(() => {
-    if (isSearchActive && searchValue) {
-      fetchCities(searchValue)
-    }
-  }, [ isSearchActive, searchValue ])
+  const onSelectCity = useCallback((city: LookupCity) => {
+    storeCity(city)
+    turnOffSearch()
+  }, [ storeCity, turnOffSearch ])
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={{ flex: 1 }}>
-        <Header 
-          textInputRef={searchTextRef}
-          isSearchActive={isSearchActive} 
-          onSearchValueChange={setSearchValue}
-          onToggleSearch={toggleSearch}
-          onPressBack={goBack}
-        />
-        <View>
-          {cities.map((city) => (
-            <View key={city.id}>
-              <Text>{city.name}, {city.country}</Text>
-            </View>
-          ))}
-        </View>
-        {/* {isSearchActive && <View style={styles.overlay}/>} */}
+  
+    <>
+      <Header 
+        textInputRef={searchTextRef}
+        isSearchActive={isSearchActive} 
+        onSearchValueChange={setSearchValue}
+        onToggleSearch={toggleSearch}
+        onPressBack={goBack}
+      />
+
+      <View style={styles.listContainer} >
+        {isSearchActive 
+          ? <SearchList foundCities={foundCities} onCityPress={onSelectCity} /> 
+          : <StoredList />
+        }
       </View>
-    </TouchableWithoutFeedback>
+    </>
   )
 }
