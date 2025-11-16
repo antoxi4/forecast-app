@@ -23,11 +23,11 @@ export const styles = StyleSheet.create({
   title: <TextStyle>{
     marginLeft: 6,
     color: Colors.textSecondary,
-    fontSize: 12,
+    fontSize: 14,
     textTransform: 'uppercase',
   },
   icon: <IconStyle>{
     color: Colors.textSecondary,
-    fontSize: 14,
+    fontSize: 16,
   },
 })

@@ -8,7 +8,7 @@ export interface CheckMarkProps extends ViewProps{
 }
 
 export const CheckMark: React.FunctionComponent<CheckMarkProps> = ({ size, style, checked = false, ...originalProps }: CheckMarkProps) => {
-  const containerFlattenedStyle = StyleSheet.flatten([ styles.container, { width: size, height: size }, style ])
+  const containerFlattenedStyle = StyleSheet.flatten([ { width: size, height: size }, style ])
 
   return (
     <View style={containerFlattenedStyle} {...originalProps}>

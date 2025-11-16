@@ -10,6 +10,8 @@ import { Routes, useNavigation } from "../../Navigation"
 import { UVIndexWidget, WindWidget } from "./components/Widgets"
 import { WidgetsConfiguration, WidgetsRenderer } from "./components/WidgetsRenderer"
 import { SafeAreaScrollView, SafeAreaScrollViewEdgeMerge, SafeAreaScrollViewEdges } from "../../Shared/components/SafeAreaScrollView"
+import { useGetWeatherConditionImage } from "../../Shared/hooks/useGetWeatherConditionImage"
+import { WeatherConditionCode } from "../../Api"
 
 const widgetsConfiguration: WidgetsConfiguration = [
   [ FeelsLikeWidget, UVIndexWidget ],
@@ -27,6 +29,10 @@ export const HomeScreen: React.FunctionComponent = () => {
   
   const [ activeCity ] = store.activeCity.useValue()
   const cityWeather = useActiveCityWeather(activeCity?.name)
+  const weatherConditionImage = useGetWeatherConditionImage(
+    cityWeather?.conditionCode ?? WeatherConditionCode.sunny, 
+    cityWeather?.isDay ?? true
+  )
 
   const navigateToCityList = useCallback(() => {
     navigation.navigate(Routes.cityList)
@@ -45,7 +51,7 @@ export const HomeScreen: React.FunctionComponent = () => {
         safeAreaEdgeMerge={scrollViewEdgeMerge}
       >
         <Image 
-          source={require('../../Assets/images/weatherState/sun_cloudy_color.png')} 
+          source={weatherConditionImage} 
           style={styles.weatherStateImage} 
         />
 

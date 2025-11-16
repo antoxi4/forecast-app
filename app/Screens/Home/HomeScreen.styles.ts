@@ -6,6 +6,8 @@ export const styles = StyleSheet.create({
   weatherStateImage: <ImageStyle>{
     marginTop: 36,
     alignSelf: 'center',
+    width: 150,
+    height: 150,
   },
   temperature: <TextStyle>{
     alignSelf: 'center',

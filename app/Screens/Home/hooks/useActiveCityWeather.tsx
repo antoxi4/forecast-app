@@ -2,7 +2,7 @@ import { useFocusEffect } from "@react-navigation/native"
 import { useCallback, useMemo, useState } from "react"
 
 import { useBootstrap } from "../../../Services/Bootstrap"
-import { WeatherForecastResponse } from "../../../Api"
+import { WeatherConditionCode, WeatherForecastResponse } from "../../../Api"
 
 export interface UseActiveCityWeather {
   locationDate?: Date;
@@ -15,6 +15,9 @@ export interface UseActiveCityWeather {
   windDirection?: string;
   windDegree?: number;
   feelLikeC?: number;
+  uvIndex?: number;
+  conditionCode?: WeatherConditionCode;
+  isDay?: boolean;
 }
 
 export const useActiveCityWeather = (cityName?: string): UseActiveCityWeather => {
@@ -54,6 +57,9 @@ export const useActiveCityWeather = (cityName?: string): UseActiveCityWeather =>
       windDirection: currentForecast?.current.wind_dir,
       windDegree: currentForecast?.current.wind_degree,
       feelLikeC: currentForecast?.current.feelslike_c,
+      uvIndex: currentForecast?.current.uv,
+      conditionCode: currentForecast?.current.condition.code,
+      isDay: currentForecast ? Boolean(currentForecast.current.is_day) : undefined,
     }
   }, [ currentForecast ])
 }
