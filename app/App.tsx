@@ -9,8 +9,8 @@ import { Navigation } from './Navigation'
 import { BootstrapContextProvider } from './Services/Bootstrap'
 
 export const App: React.FunctionComponent = () => (
-  <View style={styles.container}>
-    <SafeAreaProvider>
+  <SafeAreaProvider>
+    <View style={styles.container}>
       <StatusBar 
         translucent 
         barStyle='light-content' 
@@ -19,6 +19,6 @@ export const App: React.FunctionComponent = () => (
       <BootstrapContextProvider>
         <Navigation />
       </BootstrapContextProvider>
-    </SafeAreaProvider>
-  </View>
+    </View>
+  </SafeAreaProvider>
 )

@@ -1,14 +1,18 @@
-import { SafeAreaView, SafeAreaViewProps } from "react-native-safe-area-context"
+import { useSafeAreaInsets } from "react-native-safe-area-context"
+import { StyleSheet, View, ViewProps } from "react-native"
 
 import { styles } from "./NavigationHeaderContainer.styles"
 
-export type NavigationHeaderContainerProps = SafeAreaViewProps
+export type NavigationHeaderContainerProps = ViewProps
 
-const defaultEdges = [ 'top' ] as const
 export const NavigationHeaderContainer: React.FunctionComponent<NavigationHeaderContainerProps> = ({ 
   style,
-  edges = defaultEdges,
   ...props
-}: NavigationHeaderContainerProps) => (
-  <SafeAreaView style={[ styles.container, style ]} edges={edges} {...props}/>
-)
+}: NavigationHeaderContainerProps) => {
+  const { top } = useSafeAreaInsets()
+  const viewFlattenedStyle = StyleSheet.flatten([ styles.container, { marginTop: top }, style ])
+  
+  return (
+    <View style={viewFlattenedStyle} {...props}/>
+  )
+}
