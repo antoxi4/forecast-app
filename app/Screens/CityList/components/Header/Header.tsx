@@ -36,7 +36,6 @@ const HeaderComponent: React.FunctionComponent<HeaderProps> = ({
       {isSearchActive && (
         <CustomTextField
           autoFocus
-          multiline={false}
           value={searchValue}
           placeholder="Search city"
           isLoading={isSearchLoading}

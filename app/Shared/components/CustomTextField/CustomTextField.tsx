@@ -11,15 +11,27 @@ export interface CustomTextFieldProps extends TextInputProps {
 }
 
 export const CustomTextField: React.FunctionComponent<CustomTextFieldProps> = ({ 
+  value,
+  style,
   containerStyle, 
   iconName,
   placeholder,
-  value, 
   placeholderStyle,
   isLoading,
   ...props
 }: CustomTextFieldProps) => {
   const placeholderVisible = !value || value.length === 0
+
+  const renderPlaceholder = (): React.ReactNode => {
+    if (!placeholderVisible) {
+      return null
+    }
+    return (
+      <View style={styles.placeholderContainer}>
+        <Text style={[ placeholderStyle ]}>{placeholder}</Text>
+      </View>
+    )
+  }
 
   return (
     <View style={[ styles.container, containerStyle ]}>
@@ -28,8 +40,8 @@ export const CustomTextField: React.FunctionComponent<CustomTextFieldProps> = ({
         : iconName && <Icon name={iconName} style={styles.icon} />
       }
       <View style={styles.inputContainer}>
-        <TextInput {...props} value={value} />
-        {placeholderVisible && <Text style={[ styles.placeholder, placeholderStyle ]}>{placeholder}</Text>}
+        <TextInput  style={[ styles.textInput, style ]} value={value} {...props} />
+        {renderPlaceholder()}
       </View>
     </View>
   )

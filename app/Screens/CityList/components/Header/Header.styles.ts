@@ -16,12 +16,12 @@ export const styles = StyleSheet.create({
   locationText: <TextStyle>{
     fontSize: 16,
     color: Colors.textPrimary,
-    lineHeight: 16,
+    lineHeight: 18,
   },
   placeHolderText: <TextStyle>{
     fontSize: 16,
     color: Colors.textSecondary,
-    lineHeight: 16,
+    lineHeight: 18,
   },
   cityListButton: <ViewStyle> {
     alignSelf: 'flex-end',
