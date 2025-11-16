@@ -47,6 +47,7 @@ export const HomeScreen: React.FunctionComponent = () => {
         onCityListPress={navigateToCityList}
       />
       <SafeAreaScrollView 
+        showsHorizontalScrollIndicator={false}
         safeAreaEdges={scrollViewEdges} 
         safeAreaEdgeMerge={scrollViewEdgeMerge}
       >
