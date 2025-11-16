@@ -7,6 +7,6 @@ export const styles = StyleSheet.create({
   },
   contentContainer: <ViewStyle>{
     paddingTop: 16,
-    rowGap: 8,
+    rowGap: 12,
   },
 })

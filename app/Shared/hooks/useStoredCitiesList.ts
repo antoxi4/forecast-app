@@ -6,7 +6,7 @@ import { useBootstrap } from "../../Services/Bootstrap"
 interface UseStoreCityResult {
   activeCity: LookupCity | undefined
   cities: Array<LookupCity>
-  setActiveCity?: (city: LookupCity) => void
+  setActiveCity?: (cityId: number) => void
 }
 
 export const useStoredCitiesList = (): UseStoreCityResult => {
@@ -21,8 +21,12 @@ export const useStoredCitiesList = (): UseStoreCityResult => {
   }, [ rawStoredCities ])
 
 
-  const setActiveCity = useCallback((city: LookupCity) => {
-    store.activeCity.setValue(city)
+  const setActiveCity = useCallback((cityId: number) => {
+    const city = storedCities.find(c => c.id === cityId)
+
+    if (city) {
+      store.activeCity.setValue(city)
+    }
   }, [])
 
   return { activeCity, cities: storedCities, setActiveCity }

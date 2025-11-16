@@ -5,8 +5,11 @@ export const styles = StyleSheet.create({
   container: <ViewStyle>{
     flex: 1,
     justifyContent: "center",
-    padding: 12,
-    borderRadius: 12,
+    alignItems: "center",
+    flexDirection: "row",
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 16,
     backgroundColor: Colors.backgroundTertiary,
   },
   cityName: <TextStyle>{
@@ -16,5 +19,9 @@ export const styles = StyleSheet.create({
   cityCountry: <TextStyle>{
     color: Colors.textSecondary,
     fontSize: 14,
+  },
+  cityInfoContainer: <ViewStyle>{
+    flexDirection: "column",
+    flex: 1,
   },
 })

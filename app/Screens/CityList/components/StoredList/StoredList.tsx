@@ -1,13 +1,13 @@
+import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { ScrollView, ViewStyle } from "react-native"
 
 import { styles } from "./StoredList.styles"
 import { useStoredCitiesList } from "../../../../Shared/hooks/useStoredCitiesList"
 import { StoredCityItem } from "../StoredCityItem"
-import { useSafeAreaInsets } from "react-native-safe-area-context"
 
 export const StoredList: React.FunctionComponent = () => {
-  const { cities } = useStoredCitiesList()
   const { bottom } = useSafeAreaInsets()
+  const { cities, activeCity, setActiveCity } = useStoredCitiesList()
   
   const contentContainerStyle = { paddingBottom: bottom + 16 } as ViewStyle
 
@@ -19,6 +19,8 @@ export const StoredList: React.FunctionComponent = () => {
           cityId={city.id}
           cityName={city.name}
           cityCountry={city.country}
+          selected={activeCity?.id === city.id}
+          onPress={setActiveCity}
         />
       ))}
     </ScrollView>
