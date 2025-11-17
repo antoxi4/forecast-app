@@ -6,7 +6,7 @@ type NavigationRef = NavigationContainerRefWithCurrent<NavigationParameters>
 
 class NavigationState {
   public navigationRef: NavigationRef
-  public static shared: NavigationState = new NavigationState
+  public static shared: NavigationState = new NavigationState()
 
   constructor() {
     this.navigationRef = createNavigationContainerRef<NavigationParameters>()
